@@ -42,6 +42,7 @@ pub use sp_runtime::{Perbill, Permill};
 
 /// Import the template pallet.
 pub use pallet_template;
+pub use pallet_brand_admin;
 
 /// An index to a block.
 pub type BlockNumber = u32;
@@ -266,8 +267,28 @@ impl pallet_sudo::Config for Runtime {
 	type Call = Call;
 }
 
+parameter_types! {
+    pub const DepositBase:u128 = 500;
+    pub const DepositFactor:u32 = 50;
+    pub const MaxSignatories:u16 = 5;
+}
+
+impl pallet_multisig::Config for Runtime {
+    type Event = Event;
+    type Call = Call;
+    type Currency = Balances;
+    type DepositBase = DepositBase;
+    type DepositFactor = DepositFactor;
+    type MaxSignatories = MaxSignatories;
+    type WeightInfo = ();
+}
+
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
+	type Event = Event;
+}
+
+impl pallet_brand_admin::Config for Runtime {
 	type Event = Event;
 }
 
@@ -288,6 +309,8 @@ construct_runtime!(
 		Sudo: pallet_sudo,
 		// Include the custom logic from the pallet-template in the runtime.
 		TemplateModule: pallet_template,
+		Multisig: pallet_multisig,
+		BrandAdmin: pallet_brand_admin
 	}
 );
 
