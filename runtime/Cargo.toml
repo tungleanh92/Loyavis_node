@@ -49,9 +49,14 @@ frame-benchmarking = { version = "4.0.0-dev", default-features = false, git = "h
 frame-system-benchmarking = { version = "4.0.0-dev", default-features = false, git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17", optional = true }
 hex-literal = { version = "0.3.4", optional = true }
 
+log = { version = "0.4.14", default-features = false }
+
 # Local Dependencies
 pallet-template = { version = "4.0.0-dev", default-features = false, path = "../pallets/template" }
 pallet-brand-admin = { version = "4.0.0-dev", default-features = false, path = "../pallets/brand_admin" }
+pallet-brand-token = { version = "4.0.0-dev", default-features = false, path = "../pallets/brand_token" }
+pallet-brand-membership = { version = "4.0.0-dev", default-features = false, path = "../pallets/brand_membership" }
+pallet-ocw = { version = "4.0.0-dev", default-features = false, path = "../pallets/ocw" }
 
 [build-dependencies]
 substrate-wasm-builder = { version = "5.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.17" }
@@ -88,6 +93,9 @@ std = [
 	"sp-version/std",
 
 	"pallet-brand-admin/std",
+	"pallet-brand-token/std",
+	"pallet-brand-membership/std",
+	"pallet-ocw/std",
 ]
 runtime-benchmarks = [
 	"frame-benchmarking/runtime-benchmarks",
@@ -101,5 +109,7 @@ runtime-benchmarks = [
 	"pallet-multisig/runtime-benchmarks",
 	"sp-runtime/runtime-benchmarks",
 
-	"pallet-brand-admin/runtime-benchmarks"
+	# "pallet-brand-admin/runtime-benchmarks",
+	# "pallet-brand-membership/runtime-benchmarks",
+	# "pallet-ocw/runtime-benchmarks"
 ]
